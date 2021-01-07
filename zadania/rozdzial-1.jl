@@ -24,10 +24,12 @@ string.(collect(1:30)) .* "." .* repeat(["A", "B", "C"], 10)
 
 # # R Zadanie 1.4
 # Wczytaj zbiór danych `daneO` i napisz funkcję lub pętlę sprawdzającą typ i klasę każdej kolumny tego zbioru.
+# *Uwaga:* tu jest trochę zabawy bo pierwsza kolumna zaiwera indeksy ale nie ma nazwy więc trochę trzeba do obejść
 download("http://www.biecek.pl/R/dane/daneO.csv", "zadania/daneO.csv")
 daneO = CSV.read("zadania/daneO.csv", DataFrame, limit=1); ## colnames
 daneO = CSV.read("zadania/daneO.csv", DataFrame, header = vcat("id", names(daneO)), delim = ";", 
                  datarow = 2, missingstring = "NA")
+select!(daneO, Not(:id))
 
 for col in eachcol(daneO)
     println("klasa: ", eltype(col), ", typ: " , typeof(col))
