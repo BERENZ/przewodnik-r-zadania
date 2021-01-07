@@ -25,7 +25,7 @@ string.(collect(1:30)) .* "." .* repeat(["A", "B", "C"], 10)
 # Wczytaj zbiór danych `daneO` i napisz funkcję lub pętlę sprawdzającą typ i klasę każdej kolumny tego zbioru.
 download("http://www.biecek.pl/R/dane/daneO.csv", "zadania/daneO.csv")
 daneO = CSV.read("zadania/daneO.csv", DataFrame, limit=1); ## colnames
-dane0 = CSV.read("zadania/daneO.csv", DataFrame, header = vcat("id", names(daneO)), delim = ";", 
+daneO = CSV.read("zadania/daneO.csv", DataFrame, header = vcat("id", names(daneO)), delim = ";", 
                  datarow = 2, missingstring = "NA")
 
 for col in eachcol(daneO)
@@ -34,11 +34,10 @@ end
 
 # albo jak w rozwiązaniu z R
 for (ind, col) in enumerate(eachcol(daneO))
-    println(names(dane0)[ind], ": klasa: ", eltype(col), ", typ: " , typeof(col))
+    println(names(daneO)[ind], ": klasa: ", eltype(col), ", typ: " , typeof(col))
 end
 
 # # R Zadanie 1.5
 # Z odczytanej ramki danych `dane0` wyświetl tylko dane z wierszy o parzystych indeksach.
 
-daneO
-collect(2:2:10)
+daneO[2:2:end, :]
