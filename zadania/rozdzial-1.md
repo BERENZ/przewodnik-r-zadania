@@ -1,8 +1,10 @@
+# pakiety do wszystkich zadań
+
 ```julia
 using DataFrames
-using Literate # Literate.markdown("zadania/rozdzial-1.jl", "zadania/"; documenter=false)
 using StatsBase
 using CSV
+using Literate # Literate.markdown("zadania/rozdzial-1.jl", "zadania/"; documenter=false, execute=true)
 ```
 
 # R Zadanie 1.1
@@ -198,6 +200,136 @@ daneO[2:2:end, :]
 │ 47  │ 94    │ 55    │ 1            │ 0             │ 1        │ (+)                   │ (++)                     │ brak          │ 36               │ 1354  │
 │ 48  │ 96    │ 55    │ 1            │ 0             │ missing  │ missing               │ missing                  │ brak          │ missing          │ 1255  │
 ```
+
+# R Zadanie 1.6
+Używając operatorów logicznych wyświetl ze zbioru danych tylko wiersze odpowiadające: pacjentkom starszym niż 50 lat u których wystąpiły przerzuty do węzłów chłonnych (cecha Wezly.chlonne=1).
+
+```julia
+daneO[(daneO.Wiek .< 50) .& (daneO."Wezly.chlonne" .==1),:]
+```
+
+```
+27×10 DataFrame
+│ Row │ id    │ Wiek  │ Rozmiar.guza │ Wezly.chlonne │ Nowotwor │ Receptory.estrogenowe │ Receptory.progesteronowe │ Niepowodzenia │ Okres.bez.wznowy │ VEGF  │
+│     │ Int64 │ Int64 │ Int64        │ Int64         │ Int64?   │ String?               │ Union{Missing, String}   │ String        │ Int64?           │ Int64 │
+├─────┼───────┼───────┼──────────────┼───────────────┼──────────┼───────────────────────┼──────────────────────────┼───────────────┼──────────────────┼───────┤
+│ 1   │ 3     │ 30    │ 1            │ 1             │ 2        │ (-)                   │ (+)                      │ brak          │ 38               │ 630   │
+│ 2   │ 6     │ 33    │ 1            │ 1             │ 3        │ (-)                   │ (++)                     │ wznowa        │ 36               │ 2776  │
+│ 3   │ 8     │ 35    │ 2            │ 1             │ 2        │ (+)                   │ (++)                     │ brak          │ 38               │ 3827  │
+│ 4   │ 9     │ 35    │ 1            │ 1             │ 3        │ (-)                   │ (-)                      │ wznowa        │ 38               │ 22554 │
+│ 5   │ 10    │ 36    │ 1            │ 1             │ 2        │ (-)                   │ (++)                     │ brak          │ 37               │ 834   │
+│ 6   │ 14    │ 38    │ 1            │ 1             │ 3        │ (++)                  │ (+++)                    │ wznowa        │ 16               │ 2759  │
+│ 7   │ 15    │ 38    │ 1            │ 1             │ 3        │ (-)                   │ (-)                      │ brak          │ 44               │ 511   │
+│ 8   │ 16    │ 40    │ 1            │ 1             │ 2        │ (+)                   │ (++)                     │ brak          │ 27               │ 3038  │
+│ 9   │ 17    │ 40    │ 1            │ 1             │ 2        │ (-)                   │ (++)                     │ brak          │ 36               │ 1027  │
+│ 10  │ 18    │ 41    │ 1            │ 1             │ 2        │ missing               │ missing                  │ brak          │ 19               │ 1981  │
+│ 11  │ 19    │ 41    │ 2            │ 1             │ 2        │ (++)                  │ (+++)                    │ brak          │ 41               │ 1489  │
+│ 12  │ 21    │ 41    │ 1            │ 1             │ 3        │ (+)                   │ (+)                      │ wznowa        │ 41               │ 6175  │
+│ 13  │ 22    │ 42    │ 1            │ 1             │ 2        │ (+++)                 │ (++)                     │ wznowa        │ 29               │ 5994  │
+│ 14  │ 23    │ 42    │ 1            │ 1             │ 2        │ (++)                  │ (++)                     │ brak          │ 47               │ 3673  │
+│ 15  │ 24    │ 42    │ 1            │ 1             │ 2        │ (+++)                 │ (+++)                    │ brak          │ 47               │ 532   │
+│ 16  │ 27    │ 42    │ 2            │ 1             │ missing  │ (-)                   │ (+)                      │ brak          │ 30               │ 1339  │
+│ 17  │ 34    │ 44    │ 1            │ 1             │ 3        │ (+)                   │ (++)                     │ brak          │ 36               │ 596   │
+│ 18  │ 36    │ 44    │ 2            │ 1             │ 3        │ (-)                   │ (-)                      │ brak          │ 53               │ 164   │
+│ 19  │ 37    │ 44    │ 1            │ 1             │ missing  │ (-)                   │ (-)                      │ brak          │ 38               │ 3836  │
+│ 20  │ 40    │ 45    │ 1            │ 1             │ 2        │ (++)                  │ (++)                     │ brak          │ 54               │ 1275  │
+│ 21  │ 43    │ 46    │ 1            │ 1             │ 2        │ (-)                   │ (-)                      │ brak          │ 42               │ 18201 │
+│ 22  │ 48    │ 46    │ 1            │ 1             │ 3        │ (-)                   │ (+)                      │ brak          │ 36               │ 2703  │
+│ 23  │ 49    │ 46    │ 1            │ 1             │ 3        │ (+)                   │ (++)                     │ brak          │ 38               │ 770   │
+│ 24  │ 55    │ 47    │ 2            │ 1             │ 2        │ (-)                   │ (-)                      │ brak          │ 42               │ 4188  │
+│ 25  │ 58    │ 48    │ 1            │ 1             │ 3        │ (-)                   │ (-)                      │ wznowa        │ 21               │ 5194  │
+│ 26  │ 62    │ 49    │ 1            │ 1             │ 2        │ (+)                   │ (++)                     │ brak          │ 36               │ 3101  │
+│ 27  │ 64    │ 49    │ 2            │ 1             │ 3        │ (-)                   │ (-)                      │ brak          │ 39               │ 189   │
+```
+
+alternatywnie z operatorem @.
+
+```julia
+@. daneO[(daneO.Wiek < 50) & (daneO."Wezly.chlonne" == 1), :]
+```
+
+```
+27×10 DataFrame
+│ Row │ id    │ Wiek  │ Rozmiar.guza │ Wezly.chlonne │ Nowotwor │ Receptory.estrogenowe │ Receptory.progesteronowe │ Niepowodzenia │ Okres.bez.wznowy │ VEGF  │
+│     │ Int64 │ Int64 │ Int64        │ Int64         │ Int64?   │ String?               │ Union{Missing, String}   │ String        │ Int64?           │ Int64 │
+├─────┼───────┼───────┼──────────────┼───────────────┼──────────┼───────────────────────┼──────────────────────────┼───────────────┼──────────────────┼───────┤
+│ 1   │ 3     │ 30    │ 1            │ 1             │ 2        │ (-)                   │ (+)                      │ brak          │ 38               │ 630   │
+│ 2   │ 6     │ 33    │ 1            │ 1             │ 3        │ (-)                   │ (++)                     │ wznowa        │ 36               │ 2776  │
+│ 3   │ 8     │ 35    │ 2            │ 1             │ 2        │ (+)                   │ (++)                     │ brak          │ 38               │ 3827  │
+│ 4   │ 9     │ 35    │ 1            │ 1             │ 3        │ (-)                   │ (-)                      │ wznowa        │ 38               │ 22554 │
+│ 5   │ 10    │ 36    │ 1            │ 1             │ 2        │ (-)                   │ (++)                     │ brak          │ 37               │ 834   │
+│ 6   │ 14    │ 38    │ 1            │ 1             │ 3        │ (++)                  │ (+++)                    │ wznowa        │ 16               │ 2759  │
+│ 7   │ 15    │ 38    │ 1            │ 1             │ 3        │ (-)                   │ (-)                      │ brak          │ 44               │ 511   │
+│ 8   │ 16    │ 40    │ 1            │ 1             │ 2        │ (+)                   │ (++)                     │ brak          │ 27               │ 3038  │
+│ 9   │ 17    │ 40    │ 1            │ 1             │ 2        │ (-)                   │ (++)                     │ brak          │ 36               │ 1027  │
+│ 10  │ 18    │ 41    │ 1            │ 1             │ 2        │ missing               │ missing                  │ brak          │ 19               │ 1981  │
+│ 11  │ 19    │ 41    │ 2            │ 1             │ 2        │ (++)                  │ (+++)                    │ brak          │ 41               │ 1489  │
+│ 12  │ 21    │ 41    │ 1            │ 1             │ 3        │ (+)                   │ (+)                      │ wznowa        │ 41               │ 6175  │
+│ 13  │ 22    │ 42    │ 1            │ 1             │ 2        │ (+++)                 │ (++)                     │ wznowa        │ 29               │ 5994  │
+│ 14  │ 23    │ 42    │ 1            │ 1             │ 2        │ (++)                  │ (++)                     │ brak          │ 47               │ 3673  │
+│ 15  │ 24    │ 42    │ 1            │ 1             │ 2        │ (+++)                 │ (+++)                    │ brak          │ 47               │ 532   │
+│ 16  │ 27    │ 42    │ 2            │ 1             │ missing  │ (-)                   │ (+)                      │ brak          │ 30               │ 1339  │
+│ 17  │ 34    │ 44    │ 1            │ 1             │ 3        │ (+)                   │ (++)                     │ brak          │ 36               │ 596   │
+│ 18  │ 36    │ 44    │ 2            │ 1             │ 3        │ (-)                   │ (-)                      │ brak          │ 53               │ 164   │
+│ 19  │ 37    │ 44    │ 1            │ 1             │ missing  │ (-)                   │ (-)                      │ brak          │ 38               │ 3836  │
+│ 20  │ 40    │ 45    │ 1            │ 1             │ 2        │ (++)                  │ (++)                     │ brak          │ 54               │ 1275  │
+│ 21  │ 43    │ 46    │ 1            │ 1             │ 2        │ (-)                   │ (-)                      │ brak          │ 42               │ 18201 │
+│ 22  │ 48    │ 46    │ 1            │ 1             │ 3        │ (-)                   │ (+)                      │ brak          │ 36               │ 2703  │
+│ 23  │ 49    │ 46    │ 1            │ 1             │ 3        │ (+)                   │ (++)                     │ brak          │ 38               │ 770   │
+│ 24  │ 55    │ 47    │ 2            │ 1             │ 2        │ (-)                   │ (-)                      │ brak          │ 42               │ 4188  │
+│ 25  │ 58    │ 48    │ 1            │ 1             │ 3        │ (-)                   │ (-)                      │ wznowa        │ 21               │ 5194  │
+│ 26  │ 62    │ 49    │ 1            │ 1             │ 2        │ (+)                   │ (++)                     │ brak          │ 36               │ 3101  │
+│ 27  │ 64    │ 49    │ 2            │ 1             │ 3        │ (-)                   │ (-)                      │ brak          │ 39               │ 189   │
+```
+
+# R Zadanie 1.7
+Wyświetl nazwy kolumn w zbiorze danych daneO, a następnie oblicz długość (liczbę znaków) nazw kolejnych kolumn.
+
+Nazwy
+
+```julia
+names(daneO)
+```
+
+```
+10-element Array{String,1}:
+ "id"
+ "Wiek"
+ "Rozmiar.guza"
+ "Wezly.chlonne"
+ "Nowotwor"
+ "Receptory.estrogenowe"
+ "Receptory.progesteronowe"
+ "Niepowodzenia"
+ "Okres.bez.wznowy"
+ "VEGF"
+```
+
+Liczba znaków
+
+```julia
+length.(names(daneO))
+```
+
+```
+10-element Array{Int64,1}:
+  2
+  4
+ 12
+ 13
+  8
+ 21
+ 24
+ 13
+ 16
+  4
+```
+
+# R Zadanie 1.8
+Napisz funkcję, która za argumenty przyjmie wektor liczb, a jako wynik zwróci trzy najmniejsze i trzy największe liczby. Jeżeli wejściowy wektor jest krótszy niż trzy liczby, to wyświetlany powinien być napis “za krótki argument”.
+
+# RR Zadanie 1.9
+Zmodyfjkuj funkcję z poprzedniego zadania tak, by otrzymywała też drugi argument ile, którym można określić liczbę skrajnych wartości wyznaczanych jako wynik. Domyślną wartością tego argumentu powinna być liczba 3.
 
 ---
 
