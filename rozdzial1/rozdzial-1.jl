@@ -191,9 +191,9 @@ x = 0:0.1:1
 @. x + 0.1 + 0.1 == 0.1 + 0.1 + x
 
 # # R Zadanie 1.20
-# Dla zbioru danych `iris` narysuj wykres przedstawiający zależność pomiędzy dwoma wybranymi zmiennymi. Użyj funkcji `png()`` i `pdf()`` aby zapisać ten wykres do pliku.
+# Dla zbioru danych `iris` narysuj wykres przedstawiający zależność pomiędzy dwoma wybranymi zmiennymi. Użyj funkcji `png()` i `pdf()` aby zapisać ten wykres do pliku.
 
 
 p1 = scatter(iris.SepalLength,iris.SepalWidth)
-savefig(p1, "plotR_01.pdf")
-savefig(p1, "plotR_01.png")
+savefig(p1, "rozdzial1/plotR_01.pdf")
+savefig(p1, "rozdzial1/plotR_01.png")

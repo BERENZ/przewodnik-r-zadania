@@ -344,7 +344,7 @@ skrajne(rand(10))
 ```
 
 ```
-([0.2340492864467525, 0.24665257494112502, 0.3172776110488833], [0.7255289556505846, 0.7272800812259477, 0.8825409637713251])
+([0.18407304859405893, 0.22879519827643602, 0.2566606083210883], [0.7864144229740226, 0.894290918909449, 0.9969460143751294])
 ```
 
 # RR Zadanie 1.9
@@ -364,7 +364,7 @@ skrajne(rand(10), 4)
 ```
 
 ```
-([0.12116189692301593, 0.2516191391832536, 0.3853195615459821, 0.4310851673597642], [0.6607099706178687, 0.6942039381374301, 0.7297771068570114, 0.7506300096137666])
+([0.13184539381749638, 0.22022402495099347, 0.25932395414638343, 0.26567452917159606], [0.4631287938636546, 0.5713710590573082, 0.8012768119659066, 0.8630804193225927])
 ```
 
 # RR Zadanie 1.10
@@ -714,12 +714,12 @@ x = 0:0.1:1
 ```
 
 # R Zadanie 1.20
-Dla zbioru danych `iris` narysuj wykres przedstawiający zależność pomiędzy dwoma wybranymi zmiennymi. Użyj funkcji `png()`` i `pdf()`` aby zapisać ten wykres do pliku.
+Dla zbioru danych `iris` narysuj wykres przedstawiający zależność pomiędzy dwoma wybranymi zmiennymi. Użyj funkcji `png()` i `pdf()` aby zapisać ten wykres do pliku.
 
 ```julia
 p1 = scatter(iris.SepalLength,iris.SepalWidth)
-savefig(p1, "plotR_01.pdf")
-savefig(p1, "plotR_01.png")
+savefig(p1, "rozdzial1/plotR_01.pdf")
+savefig(p1, "rozdzial1/plotR_01.png")
 ```
 
 ---
