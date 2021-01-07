@@ -4,6 +4,7 @@
 using DataFrames
 using StatsBase
 using CSV
+using Plots
 using Literate # Literate.markdown("zadania/rozdzial-1.jl", "zadania/"; documenter=false, execute=true)
 ```
 
@@ -326,8 +327,124 @@ length.(names(daneO))
 # R Zadanie 1.8
 Napisz funkcję, która za argumenty przyjmie wektor liczb, a jako wynik zwróci trzy najmniejsze i trzy największe liczby. Jeżeli wejściowy wektor jest krótszy niż trzy liczby, to wyświetlany powinien być napis “za krótki argument”.
 
+```julia
+function skrajne(x)
+    if length(x) < 3
+        return "za krótki argument"
+    else
+        sort!(x)
+        return x[1:3], x[end-2:end]
+    end
+end
+
+skrajne(rand(10))
+```
+
+```
+([0.10568693237663229, 0.12150278872023001, 0.24516995931534336], [0.473997612405749, 0.49778780732329664, 0.7184658727852182])
+```
+
 # RR Zadanie 1.9
 Zmodyfjkuj funkcję z poprzedniego zadania tak, by otrzymywała też drugi argument ile, którym można określić liczbę skrajnych wartości wyznaczanych jako wynik. Domyślną wartością tego argumentu powinna być liczba 3.
+
+```julia
+function skrajne(x, ile = 3)
+    if length(x) < ile
+        return "za krótki argument"
+    else
+        sort!(x)
+        return x[1:ile], x[end-(ile-1):end]
+    end
+end
+
+skrajne(rand(10), 4)
+```
+
+```
+([0.028792227693237527, 0.22777871659761995, 0.3373981685732621, 0.3540703750568317], [0.6423171032867505, 0.7004210476083594, 0.7204453433252107, 0.8548103275243228])
+```
+
+# RR Zadanie 1.10
+ Napisz funkcję `poczatek()`` przyjmującą za pierwszy argument wektor, macierz lub ramkę a za drugi argument liczbę n. Niech to będzie przeciążona funkcja. Dla wektora powinna ona w wyniku zwracać n pierwszych elementów, dla macierzy i ramki danych powinna zwracać podmacierz o wymiarach n × n.
+
+*UWAGA:* przyklad multiple dispatch
+
+# RR Zadanie 1.11
+
+Napisz funkcję, która w układzie biegunowym ma współrzędne:
+\begin{equation}
+\begin{cases}
+r &= 1 + sin(t) \\
+\phi &= c * t
+\end{cases}
+\end{equation}
+dla $c \in \{1, 1.1, 2.2 \}$
+
+```
+Wskazówka: trzeba zamienić współrzędne na układ kartezjański przekształceniami x=rcos(ϕ) i y=rsin(ϕ). Autor upierał się, że tego uczą w gimnazjum i takie podpowiedzi są zbędne, ale prawda jest taka, że autor nigdy nie był w gimnazjum. Przyp. żony.
+```
+
+```julia
+function rysuj(c, max=100)
+    t = 0:0.001:max
+    r = 1 .+ sin.(t)
+    ϕ = c*t
+    x = r .* cos.(ϕ)
+    y = r .* sin.(ϕ)
+    plot(x, y,  legend = false)
+end
+```
+
+```
+rysuj (generic function with 2 methods)
+```
+
+c=1
+
+```julia
+rysuj(1)
+```
+![](3685228221.png)
+
+c=0.1
+
+```julia
+rysuj(0.1)
+```
+![](2770443344.png)
+
+c=2.2
+
+```julia
+rysuj(2.2)
+```
+![](619018924.png)
+
+# R Zadanie 1.12
+Używając instrukcji curve() narysuj wykres funkcji $f(x)=2x^3-x^2+3$ na przedziale [0, 1].
+
+Na wykresie tej funkcji zaznacz punkty odpowiadające wartościom w punktach 0.2 i 0.8, a następnie na wykres nanieś napisy opisujące współrzędne tych punktów.
+
+```julia
+fun(x) = 2*x^3-x^2+3
+
+plot(fun, 0, 1, legend = false) ## jak funkcja curve
+scatter!([0.2, 0.8], fun.([0.2, 0.8]))
+annotate!(0.2, fun(0.2), text(string([0.2, round(fun(0.2),digits=1)]), :bottom))
+annotate!(0.8, fun(0.8), text(string([0.8, round(fun(0.8),digits=1)]), :bottom))
+```
+![](2511915906.png)
+
+# R Zadanie 1.13
+Pod adresem http://www.biecek.pl/R/dane/daneBioTech.csv znajduje się plik tekstowy z danymi. Dane są w formacie tabelarycznym, mają nagłówek, kolejne pola rozdzielane są średnikiem a kropką dziesiętną jest przecinek. Wczytaj te dane do programu R i przypisz je do zmiennej daneBT.
+
+```julia
+download("http://www.biecek.pl/R/dane/daneBioTech.csv", "daneBioTech")
+```
+
+```
+"daneBioTech"
+```
 
 ---
 
