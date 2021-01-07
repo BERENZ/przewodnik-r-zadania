@@ -26,7 +26,7 @@ OrderedCollections.OrderedDict{Int64,Int64} with 6 entries:
 ```
 
 # RR Zadanie 1.2
-Zbuduj własne tablice trygonometryczne. Przygotuj ramkę danych, w których zebrane będą informacje o wartościach funkcji sinus, cosinus, tangens i cotangens dla kątów: $0$ , $30$ , $45$ , $60$ , $90$ . Zauważ, że funkcje trygonometryczne w R przyjmują argumenty w radianach.
+Zbuduj własne tablice trygonometryczne. Przygotuj ramkę danych, w których zebrane będą informacje o wartościach funkcji sinus, cosinus, tangens i cotangens dla kątów: $0^{\circ}$ , $30^{\circ}$ , $45^{\circ}$ , $60^{\circ}$ , $90^{\circ}$ . Zauważ, że funkcje trygonometryczne w R przyjmują argumenty w radianach.
 
 ```julia
 rad2dec(x) = x*π/180
@@ -89,6 +89,7 @@ string.(collect(1:30)) .* "." .* repeat(["A", "B", "C"], 10)
 
 # R Zadanie 1.4
 Wczytaj zbiór danych `daneO` i napisz funkcję lub pętlę sprawdzającą typ i klasę każdej kolumny tego zbioru.
+*Uwaga:* tu jest trochę zabawy bo pierwsza kolumna zaiwera indeksy ale nie ma nazwy więc trochę trzeba do obejść
 
 ```julia
 download("http://www.biecek.pl/R/dane/daneO.csv", "zadania/daneO.csv")
