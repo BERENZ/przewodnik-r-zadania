@@ -4,4 +4,4 @@ Na podstawie: https://krzysiektr.github.io/Przewodnik_zad_odp/
 
 Spis treści:
 
-1. [Rozdział 1](zadania/rozdzial-1.md)
+1. [Rozdział 1](rozdzial1/rozdzial-1.md)

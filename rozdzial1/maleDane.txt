@@ -1,0 +1,11 @@
+Wiek	Płeć_K_0_M_1	WIT
+59	M	obecny
+61	M	brak
+49	M	brak
+56	M	brak
+28	M	brak
+58	M	brak
+38	M	obecny
+55	K	brak
+53	K	obecny
+56	M	brak
