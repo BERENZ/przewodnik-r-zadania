@@ -9,7 +9,7 @@ using StringEncodings
 using Plots
 using TexTables
 using LinearAlgebra
-using Literate # Literate.markdown("rozdzial2/rozdzial-2.jl", "rozdzial2/"; documenter=false, execute=true)
+using Literate # Literate.markdown("zadania/rozdzial2/rozdzial-2.jl", "zadania/rozdzial2/"; documenter=false, execute=true)
 
 # # R Zadanie 2.1
 
@@ -34,8 +34,8 @@ freqtable(daneBT, :Wiek_poziomy, :Płeć_K_0_M_1, :WIT)
 # # RR Zadanie 2.2
 # Pod adresem http://www.biecek.pl/R/dane/imieniny.txt znajduje się plik tekstowy z imionami i datami imienin dla kolejnych imion. Plik jest w dosyć kłopotliwym formacie, mianowicie w każdym wierszu w pierwszej pozycji znajduje się imię, a po nim występują daty imienin. Wszystkie te pola rozdzielone są spacją. Ponieważ jednak różne imiona mają różne liczby imienin dane te nie są w postaci tabelarycznej. Odczytaj dane tak, by każdy wiersz był jednym elementem (można np. za separator wskazać ; nie występuje on w tym pliku, cała linia zostanie więc traktowana jako jeden element). Sprawdź ile imion znajduje się w tym pliku z danymi.
 
-download("http://www.biecek.pl/R/dane/imieniny.txt", "rozdzial2/imieniny.txt")
-linie = readlines("rozdzial2/imieniny.txt", enc"ISO-8859-2");
+download("http://www.biecek.pl/R/dane/imieniny.txt", "zadania/rozdzial2/imieniny.txt")
+linie = readlines("zadania/rozdzial2/imieniny.txt", enc"ISO-8859-2");
 linie[1:10]
 
 # # RRR Zadanie 2.3
@@ -117,7 +117,7 @@ eigen(mat)
 # Odczytaj ramkę danych z zadania 1.13. Następnie wyznacz histogram dla zmiennej Wiek i zapisz go do pliku hist.pdf w wymiarach 5×5 cali
 
 p1 = histogram(daneBT.Wiek, bins = :auto, size = (5*96, 5*96), legend = false, color = "white")
-savefig(p1, "rozdzial2/hist.pdf")
+savefig(p1, "zadania/rozdzial2/hist.pdf")
 
 # # RRR Zadanie 2.9
 
