@@ -1,13 +1,3 @@
-# # Pakiety do wszystkich zadań
-using DataFrames
-using StatsBase
-using CSV
-using Plots
-#using StatsPlots
-using StringEncodings
-using RDatasets
-using Literate # Literate.markdown("rozdzial1/rozdzial-1.jl", "rozdzial1/"; documenter=false, execute=true)
-
 # # R Zadanie 1.1
 # Skonstruuj wektor kwadratów liczb od 1 do 100. Następnie używając operatora dzielenia modulo i funkcji factor() zlicz, które cyfry oraz jak często występują na pozycji jedności w wyznaczonych kwadratach.
 
@@ -29,9 +19,9 @@ string.(collect(1:30)) .* "." .* repeat(["A", "B", "C"], 10)
 # # R Zadanie 1.4
 # Wczytaj zbiór danych `daneO` i napisz funkcję lub pętlę sprawdzającą typ i klasę każdej kolumny tego zbioru.
 # *Uwaga:* tu jest trochę zabawy bo pierwsza kolumna zaiwera indeksy ale nie ma nazwy więc trochę trzeba do obejść
-download("http://www.biecek.pl/R/dane/daneO.csv", "rozdzial1/daneO.csv")
-daneO = CSV.read("rozdzial1/daneO.csv", DataFrame, limit=1); ## colnames
-daneO = CSV.read("rozdzial1/daneO.csv", DataFrame, header = vcat("id", names(daneO)), delim = ";", 
+download("http://www.biecek.pl/R/dane/daneO.csv", "zadania/rozdzial1/daneO.csv")
+daneO = CSV.read("zadania/rozdzial1/daneO.csv", DataFrame, limit=1); ## colnames
+daneO = CSV.read("zadania/rozdzial1/daneO.csv", DataFrame, header = vcat("id", names(daneO)), delim = ";", 
                  datarow = 2, missingstring = "NA")
 select!(daneO, Not(:id))
 
@@ -145,14 +135,14 @@ annotate!(0.8, fun(0.8), text(string([0.8, round(fun(0.8),digits=1)]), :bottom))
 # # R Zadanie 1.13
 # Pod adresem http://www.biecek.pl/R/dane/daneBioTech.csv znajduje się plik tekstowy z danymi. Dane są w formacie tabelarycznym, mają nagłówek, kolejne pola rozdzielane są średnikiem a kropką dziesiętną jest przecinek. Wczytaj te dane do programu R i przypisz je do zmiennej daneBT.
 
-download("http://www.biecek.pl/R/dane/daneBioTech.csv", "rozdzial1/daneBioTech")
-daneBT = CSV.read(open(read, "rozdzial1/daneBioTech", enc"ISO-8859-2"), DataFrame; 
+download("http://www.biecek.pl/R/dane/daneBioTech.csv", "zadania/rozdzial1/daneBioTech")
+daneBT = CSV.read(open(read, "zadania/rozdzial1/daneBioTech", enc"ISO-8859-2"), DataFrame; 
                   delim=';', decimal=',', header=true, normalizenames = true)
 
 # # R Zadanie 1.14
 # Z odczytanych w poprzednim zadaniu danych wybierz tylko pierwsze trzy kolumny i pierwsze 10 wierszy. Zapisz ten fragment danych do pliku `maleDane.txt` na dysk `c:\`` (użytkownicy Linuxa mogą zapisać do innego katalogu). Rozdzielaj kolejne pola znakiem tabulacji a kropką dziesiętną będzie kropka. Sprawdź w dowolnym edytorze tekstowym, co zapisało się do tego pliku.
 
-CSV.write( "rozdzial1/maleDane.txt", daneBT[1:10, 1:3], delim = "\t", decimal='.')
+CSV.write( "zadania/rozdzial1/maleDane.txt", daneBT[1:10, 1:3], delim = "\t", decimal='.')
 
 # # RR Zadanie 1.15
 # Skonstruuj wektor 100 liczb, który jest symetryczny (tzn. elementy czytane od końca tworzą ten sam wektor co elementy czytane od początku). Pierwsze 20 liczb to kolejne liczby naturalne, następnie występuje 10 zer, następnie 20 kolejnych liczb parzystych (pozostałe elementy określone są przez warunek symetrii). Napisz funkcję, która sprawdza czy wektor jest symetryczny i sprawdź czy wygenerowany wektor jest symetryczny.
@@ -195,5 +185,5 @@ x = 0:0.1:1
 
 
 p1 = scatter(iris.SepalLength,iris.SepalWidth)
-savefig(p1, "rozdzial1/plotR_01.pdf")
-savefig(p1, "rozdzial1/plotR_01.png")
+savefig(p1, "zadania/rozdzial1/plotR_01.pdf")
+savefig(p1, "zadania/rozdzial1/plotR_01.png")

@@ -1,21 +1,8 @@
-# # Pakiety do wszystkich zadań
-using CategoricalArrays
-using Statistics
-using StatsBase
-using DataFrames
-using CSV
-using FreqTables
-using StringEncodings
-using Plots
-using TexTables
-using LinearAlgebra
-using Literate # Literate.markdown("zadania/rozdzial2/rozdzial-2.jl", "zadania/rozdzial2/"; documenter=false, execute=true)
-
 # # R Zadanie 2.1
 
 # Odczytaj ramkę danych z zadania 1.13. Następnie zamień dane liczbowe z kolumny Wiek na zmienną czynnikową, dzieląc pacjentki na 3 grupy: o wieku do 45 lat, o wieku powyżej 55 lat i o wieku pośrednim. Poziomy tej zmiennej powinny nazywać się następująco: `"wiek <45", "45<= wiek <= 55", "wiek >55"`. Następnie wyświetl macierz kontyngencji dla tej zmiennej i dla pary zmiennych wieku oraz dla płci. Dodaj do macierzy sumy brzegowe. Wyświetl płaską macierz kontyngencji dla trójki zmiennych czynnikowych, dwóch powyższych i jeszcze zmiennej `WIT`.
 
-daneBT = CSV.read(open(read, "rozdzial1/daneBioTech", enc"ISO-8859-2"), DataFrame; 
+daneBT = CSV.read(open(read, "zadania/rozdzial1/daneBioTech", enc"ISO-8859-2"), DataFrame; 
                   delim=';', decimal=',', header=true, normalizenames = true)
 
 daneBT.Wiek_poziomy = cut(daneBT.Wiek, [0, 45, 55.5, maximum(daneBT.Wiek)], 

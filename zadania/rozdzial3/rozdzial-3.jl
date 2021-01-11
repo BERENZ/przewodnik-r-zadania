@@ -1,17 +1,3 @@
-# # Pakiety do wszystkich zadań
-using DataFrames
-using StatsBase
-using CSV
-using Plots
-using StatsPlots
-using StringEncodings
-using NamedArrays
-using RDatasets
-using Distributions
-using Random
-using GLM
-using Literate # Literate.markdown("rozdzial1/rozdzial-1.jl", "rozdzial1/"; documenter=false, execute=true)
-
 # # R Zadanie 3.1
 # Napisz funkcję `momenty()`, która dla zadanego wektora liczb wyznaczy średnią, wariancję, skośność i kurtozę.
 
